@@ -20,3 +20,11 @@ If you are developing a production application, we recommend using TypeScript wi
 evitar la importacion de libreria de bootstrap, debido a que el proyecto ya cuenta con instalacion de react-bootstrap
 
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+
+
+
+## Librerias que se han utiliado en este proyecto
+
+npm install react-router-dom
+npm install react-bootstrap
+npm install bootstrap

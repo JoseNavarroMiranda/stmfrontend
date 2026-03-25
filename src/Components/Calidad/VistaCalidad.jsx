@@ -2,7 +2,7 @@ function VistaCalidad (){
 
     return (
         <div>
-            <h1>Vista de calidad</h1>
+            <h1>Calidad smt</h1>
         </div>
 
     );

@@ -1,16 +1,17 @@
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 
-export function AppNavbar({ title, menuItems  }) {
+export function AppNavbar() {
   return (
-    <Navbar bg="light" data-bs-theme="light">
+    <Navbar bg="primary" >
       <Container>
-        <Navbar.Brand href="#home">{title ?? "Navbar with text"}</Navbar.Brand>
-        <nav>
-          {menuItems.map(item => (
-            <a key={item.path} href={item.path}>{item.label}</a>
-          ))}
-        </nav>
+        <Navbar.Brand href="/">Aqui se mostrara logo</Navbar.Brand>
+        <Navbar.Toggle />
+        <Navbar.Collapse className="justify-content-end">
+          <Navbar.Text>
+            Signed in as: <a href="#login">Ma</a>
+          </Navbar.Text>
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );

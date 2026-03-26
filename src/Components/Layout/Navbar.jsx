@@ -3,13 +3,13 @@ import Navbar from "react-bootstrap/Navbar";
 
 export function AppNavbar() {
   return (
-    <Navbar bg="primary" >
+    <Navbar bg="primary" variant="dark" className="px-3">
       <Container>
-        <Navbar.Brand href="/">Aqui se mostrara logo</Navbar.Brand>
+        <Navbar.Brand>Aqui se mostrara logo</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
-            Signed in as: <a href="#login">Ma</a>
+            Signed in as: <a href="#login">Usuario</a>
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>

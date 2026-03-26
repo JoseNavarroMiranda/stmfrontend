@@ -13,6 +13,8 @@ import VistaCalidad from "./Components/Calidad/VistaCalidad.jsx";
 import VistaGerencia from "./Components/Gerencia/VistaGerencia.jsx";
 import VistaOperador from "./Components/Operador/VistaOperador.jsx";
 import VistaSupervisor from "./Components/Supervisor/VistaSupervisor.jsx";
+import { RoleLayout } from "./Components/Layout/RoleLayout.jsx";
+import { roleConfigs } from "./Components/Config/role.js";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -26,10 +28,45 @@ createRoot(document.getElementById("root")).render(
             </Background>
           }
         />
-        <Route path="/calidad" element={<VistaCalidad/>} />
-        <Route path="/gerencia" element={<VistaGerencia/>}/>
-        <Route path="/operador" element={<VistaOperador/>}/>
-        <Route path="/supervisor" element={<VistaSupervisor/>}/>
+        <Route 
+          path="/calidad" 
+          element={
+            <RoleLayout
+              title ={roleConfigs.calidad.title}
+              menuItems={roleConfigs.calidad.menuItems}>
+              <VistaCalidad/>
+            </RoleLayout>}/>
+
+
+        <Route 
+          path="/gerencia" 
+          element={
+          <RoleLayout
+            title={roleConfigs.gerencia.title}
+            menuItems={roleConfigs.gerencia.menuItems}>
+            <VistaGerencia/>
+          </RoleLayout>}/>
+
+
+        <Route 
+          path="/operador" 
+          element={
+            <RoleLayout
+              title={roleConfigs.operador.title}
+              menuItems={roleConfigs.gerencia.menuItems}>
+              <VistaOperador/>
+            </RoleLayout>}/>
+        
+        
+        <Route 
+          path="/supervisor" 
+          element={
+            <RoleLayout
+              title={roleConfigs.supervisor.title}
+              menuItems={roleConfigs.supervisor.menuItems}>
+              <VistaSupervisor/>
+            </RoleLayout>}/>
+
 
       </Routes>
     </BrowserRouter>

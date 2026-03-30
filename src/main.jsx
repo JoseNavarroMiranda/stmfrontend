@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 /*Libreiras de bootstrap*/
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -8,6 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 /*Importacion de componentes*/
 import Login from "./Components/LoginComponente/Login.jsx";
 import Background from "./Components/LoginComponente/Background.jsx";
+import RutaProtegida from "./Components/Auth/RutaProtegida.jsx";
 /*Lista de vistas con route*/
 import VistaCalidad from "./Components/Calidad/VistaCalidad.jsx";
 import VistaGerencia from "./Components/Gerencia/VistaGerencia.jsx";
@@ -28,46 +29,61 @@ createRoot(document.getElementById("root")).render(
             </Background>
           }
         />
-        <Route 
-          path="/calidad" 
+        <Route
+          path="/calidad"
           element={
-            <RoleLayout
-              title ={roleConfigs.calidad.title}
-              menuItems={roleConfigs.calidad.menuItems}>
-              <VistaCalidad/>
-            </RoleLayout>}/>
+            <RutaProtegida>
+              <RoleLayout
+                title={roleConfigs.calidad.title}
+                menuItems={roleConfigs.calidad.menuItems}
+              >
+                <VistaCalidad />
+              </RoleLayout>
+            </RutaProtegida>
+          }
+        />
 
-
-        <Route 
-          path="/gerencia" 
+        <Route
+          path="/gerencia"
           element={
-          <RoleLayout
-            title={roleConfigs.gerencia.title}
-            menuItems={roleConfigs.gerencia.menuItems}>
-            <VistaGerencia/>
-          </RoleLayout>}/>
+            <RutaProtegida>
+              <RoleLayout
+                title={roleConfigs.gerencia.title}
+                menuItems={roleConfigs.gerencia.menuItems}
+              >
+                <VistaGerencia />
+              </RoleLayout>
+            </RutaProtegida>
+          }
+        />
 
-
-        <Route 
-          path="/operador" 
+        <Route
+          path="/operador"
           element={
-            <RoleLayout
-              title={roleConfigs.operador.title}
-              menuItems={roleConfigs.gerencia.menuItems}>
-              <VistaOperador/>
-            </RoleLayout>}/>
-        
-        
-        <Route 
-          path="/supervisor" 
+            <RutaProtegida>
+              <RoleLayout
+                title={roleConfigs.operador.title}
+                menuItems={roleConfigs.operador.menuItems}
+              >
+                <VistaOperador />
+              </RoleLayout>
+            </RutaProtegida>
+          }
+        />
+
+        <Route
+          path="/supervisor"
           element={
-            <RoleLayout
-              title={roleConfigs.supervisor.title}
-              menuItems={roleConfigs.supervisor.menuItems}>
-              <VistaSupervisor/>
-            </RoleLayout>}/>
-
-
+            <RutaProtegida>
+              <RoleLayout
+                title={roleConfigs.supervisor.title}
+                menuItems={roleConfigs.supervisor.menuItems}
+              >
+                <VistaSupervisor />
+              </RoleLayout>
+            </RutaProtegida>
+          }
+        />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

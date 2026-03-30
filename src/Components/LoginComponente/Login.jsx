@@ -7,11 +7,23 @@ const RUTAS_POR_ROL = {
   1: "/operador",
   2: "/calidad",
   3: "/supervisor",
-  4: "/gerencia",
+  6: "/gerencia",
 };
 
 function Login() {
   const navigate = useNavigate();
+
+  //Permite controlar la navegacion de usuario al intentar regresar de pagina dashboard a login
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
+  //   const usuario = JSON.parse(localStorage.getItem('usuario'));
+
+  //   if (token && usuario) {
+  //     const ruta = RUTAS_POR_ROL[usuario.rol_id] || '/';
+  //     navigate(ruta, { replace: true }); 
+  //   }
+  // }, []);
+
   const [nombre, setNombre] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -19,7 +31,6 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("handleSubmit ejecutado");
     setError("");
 
     if (!nombre.trim() || !password.trim()) {

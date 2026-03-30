@@ -1,8 +1,26 @@
+import { useNavigate } from 'react-router-dom';
 import Container from "react-bootstrap/Container";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Navbar from "react-bootstrap/Navbar";
 
 export function AppNavbar() {
+  const navigate = useNavigate();
+
+
+  // Leer usuario guardado en localstorage, esto desde componente de Login.jsx
+
+  const usuario = JSON.parse(localStorage.getItem('usuario'));
+  const nombreUsuario = usuario?.nombre || 'Usuario';
+
+  //funcion para realizar logout
+  const handleLogout = () => {
+    const confirmar = window.confirm('¿Estas seguro de cerrar sesion?');
+    if (confirmar) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('usuario');
+      navigate('/', { replace: true });
+    }
+  };
 
   return (
     <Navbar
@@ -24,12 +42,14 @@ export function AppNavbar() {
           <NavDropdown
             id="nav-dropdown"
             align="end"
-            title={<span className="text-white fw-medium">Cuenta</span>}
+            title={<span className="text-white fw-medium">{nombreUsuario}</span>}
             menuVariant="light"
           >
             <NavDropdown.Item eventKey="4.1">Perfil</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item eventKey="4.4">Cerrar sesión</NavDropdown.Item>
+            <NavDropdown.Item eventKey="4.4" onClick={handleLogout}>
+              Cerrar sesión
+            </NavDropdown.Item>
           </NavDropdown>
         </Navbar.Collapse>
       </Container>

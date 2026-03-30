@@ -1,6 +1,7 @@
 import { AppNavbar } from './Navbar';
 import { Footer } from './Footer';
 
+
 export function RoleLayout({ title, menuItems, children }) {
   return (
     <div className="min-vh-100 d-flex flex-column bg-light">

@@ -20,7 +20,7 @@ export function AppNavbar() {
       localStorage.removeItem('usuario');
       navigate('/', { replace: true });
     }
-  };
+  };  
 
   return (
     <Navbar

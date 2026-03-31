@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Form, Button, Card, Container, Alert, Spinner } from "react-bootstrap";
 import { loginService } from "../../services/authService";
 
@@ -12,17 +12,19 @@ const RUTAS_POR_ROL = {
 
 function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const mensajeExterno = location.state?.mensaje;
 
   //Permite controlar la navegacion de usuario al intentar regresar de pagina dashboard a login
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token');
-  //   const usuario = JSON.parse(localStorage.getItem('usuario'));
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const usuario = JSON.parse(localStorage.getItem('usuario'));
 
-  //   if (token && usuario) {
-  //     const ruta = RUTAS_POR_ROL[usuario.rol_id] || '/';
-  //     navigate(ruta, { replace: true }); 
-  //   }
-  // }, []);
+    if (token && usuario) {
+      const ruta = RUTAS_POR_ROL[usuario.rol_id] || '/';
+      navigate(ruta, { replace: true }); 
+    }
+  }, []); // unicamente se carga una vez cuando el componente se carga
 
   const [nombre, setNombre] = useState("");
   const [password, setPassword] = useState("");
@@ -47,7 +49,7 @@ function Login() {
       localStorage.setItem("usuario", JSON.stringify(usuario));
 
       const ruta = RUTAS_POR_ROL[usuario.rol_id] || "/";
-      navigate(ruta);
+      navigate(ruta, { replace: true });
     } catch (err) {
       setError(err.message);
     } finally {
@@ -66,6 +68,13 @@ function Login() {
             Iniciar Sesión
           </Card.Title>
 
+          {/* mensaje de error de RutaProtegida*/} 
+          {mensajeExterno && (
+            <Alert variant="warning" className="py-2">{mensajeExterno}</Alert>
+          )}
+
+
+          {/*mensaje de error en formulario*/}
           {error && (
             <Alert variant="danger" className="py-2">
               {error}

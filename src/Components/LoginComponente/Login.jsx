@@ -26,7 +26,7 @@ function Login() {
     }
   }, []); // unicamente se carga una vez cuando el componente se carga
 
-  const [nombre, setNombre] = useState("");
+  const [noEmpleado, setnoEmpleado] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [cargando, setCargando] = useState(false);
@@ -35,14 +35,14 @@ function Login() {
     e.preventDefault();
     setError("");
 
-    if (!nombre.trim() || !password.trim()) {
+    if (!noEmpleado.trim() || !password.trim()) {
       setError("Por favor completa todos los campos.");
       return;
     }
 
     setCargando(true);
     try {
-      const respuesta = await loginService(nombre, password);
+      const respuesta = await loginService(noEmpleado, password);
       const { token, usuario } = respuesta.data;
 
       localStorage.setItem("token", token);
@@ -91,10 +91,10 @@ function Login() {
                 <Form.Control
                   size="lg"
                   type="text"
-                  placeholder="Tu nombre de usuario"
+                  placeholder="Numero de empleado"
                   className="bg-light"
-                  value={nombre}
-                  onChange={(e) => setNombre(e.target.value)}
+                  value={noEmpleado}
+                  onChange={(e) => setnoEmpleado(e.target.value)}
                   disabled={cargando}
                 />
               </Form.Group>
